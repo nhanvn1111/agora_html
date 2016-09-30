@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> 
+<!--[if IE 9 ]>    <html lang="en" class="ie"> <![endif]--> 
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Agora - Html/jQuery template by pezflash</title>
+	<meta name="description" content="Html - jQuery template by pezflash"/>
+	<meta name="keywords" content=""/>
+	<meta name="robots" content="index, follow"/>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic" />
+	<link rel="stylesheet" type="text/css" href="js/tipsy/tipsy.css" />
+	<link rel="stylesheet" type="text/css" href="js/prettyPhoto/css/prettyPhoto.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="js/superfish/superfish.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="js/scrollpane/jquery.jscrollpane.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	
+	<!-- SCRIPTS -->
+	<script type="text/javascript" src="js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery-migrate-1.2.1.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/tipsy/jquery.tipsy.js"></script>
+	<script type="text/javascript" src="js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="js/superfish/hoverIntent.js"></script>
+	<script type="text/javascript" src="js/superfish/superfish.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="js/scrollpane/jquery.jscrollpane.min.js"></script>
+	<script type="text/javascript" src="js/mdetect/mdetect.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+
+	<!-- CUSTOM SCRIPTS FOR THIS PAGE -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			//TEAM FUNCTION
+			var clickedItem;
+			var activeItem = "none";
+			var m = $('#team .member');
+			$('#team .submenu a').click(loadMember);
+
+			function loadMember(e) {
+
+				var id = e.currentTarget.id;
+				var t = 1500;	//EASING TIME VALUE - milliseconds
+				clickedItem = document.getElementById(id);
+
+				//ANIMATE BASE ON INIT
+				$('#team .profile-base').delay(t/2).animate({ width: '640px' }, t/2, 'easeOutQuint');
+				
+				//LINK ID EXCEPTION
+				if (activeItem !== clickedItem) {
+				
+					//SET CURRENT MEMBER
+					member = $(clickedItem).attr("href");
+
+					//PLACE THE MARKER
+					$('#team .submenu .marker').stop(true,true).animate({ top: $(clickedItem).position().top }, t/2, 'easeOutQuint' );
+					
+					//HIDE ALL SECTIONS
+					m.stop(true,true).animate({ opacity: 0 }, t/2, 'easeOutQuint');
+					m.delay(t/2).hide(0);
+
+					//LOAD MEMBER
+					$(member).stop(true,true).show().delay(t/2).animate({ opacity: 1 }, t, 'easeOutQuint');
+					
+					//DISABLE-ENABLED BUTTON
+					$(clickedItem).addClass("disabled");
+					$(activeItem).removeClass("disabled");
+					activeItem = clickedItem;
+				}
+
+				e.preventDefault();
+			};
+
+			//LOAD FIRST ITEM
+			$('#team .submenu').find('a[href="#m1"]').triggerHandler('click');
+
+			//SCROLL TEXT
+			$('.scroll-paragraph').jScrollPane({ mouseWheelSpeed: 20 });
+
+		});
+	</script>
+</head>
+
+
+<body>
+
+	<!-- GLOBAL BORDER -->
+	<div id="left"></div>
+	<div id="right"></div>
+	<div id="top"></div>
+	<div id="bottom"></div>
+
+
+
+	<!-- FULLSCREEN BACKGROUND -->
+	<div id="backg">
+		<img src="images/team/background.jpg" class="bg">
+	</div>
+
+
+		
+	<!-- HEADER --> 
+	<div id="header">
+		<a href="index.html"><img src="images/logo.png" alt="" title="Back to home" /></a>
+	</div>
+
+
+	
+<!-- ABOUT - TEAM --> 
+	<div id="team">
+
+		<!-- BASE BAND --> 
+		<div class="base"></div>
+
+		<!-- TITLE & SUBTITLE --> 
+		<span class="title">About Us</span>
+		<span class="subtitle">OUR TEAM</span>
+
+		<!-- WHITE BASE --> 
+		<div class="profile-base"></div>
+
+		<!-- SUBMENU -->
+		<div class="submenu">
+			<div class="marker"><img src="images/team/marker.png" alt="" /></div>
+			<ul>
+				<li><a href="#m1" id="1">ALICE SANDRINO</a></li><br/>
+				<li><a href="#m2" id="2">CARMEN MENÉNDEZ</a></li><br/>
+				<li><a href="#m3" id="3">MIKE SOLOSKY</a></li><br/>
+				<li><a href="#m4" id="4">STEPHANE OUVERT</a></li><br/>
+				
+			</ul>
+			
+		</div>
+
+		<!-- TEAM MEMBER 1 --> 
+		<div id="m1" class="member">
+			<!-- IMG --> 
+			<div class="profile-img"><img src="images/team/team_member_1.jpg" alt="" /></div>
+			<!-- SCROLL PARAGRAPH -->
+			<div class="scroll-paragraph">
+				<span><strong>Alice Sandrino</strong> lorem ipsum ad his scripta blandit partiendo, eum fastidii, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per. Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. Eos vocibus deserunt quaestio ei. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit.<br /><br />Tota ludus oratio ea mel, offendit persequeris ei vim. Eos dicat oratio partem ut, id cum ignota senserit intellegat. Sit inani ubique graecis ad, quando graecis liberavisse et cum, dicit option eruditi at duo. Homero salutatus suscipiantur eum id, tamquam voluptaria expetendis ad sed, nobis feugiat similique usu ex. Eum hinc argumentum te, no sit percipit adversarium, ne qui feugiat persecuti. Odio omnes scripserit ad est, ut vidit lorem maiestatis his, putent mandamus gloriatur ne pro. Oratio iriure rationibus ne his, ad est corrumpit splendide. Ad duo appareat moderatius, ei falli tollit denique eos.</span>
+			</div>
+			<!-- EMAIL --> 
+			<div class="email"><a href="mailto:alice@coolagora.com">alice@coolagora.com</a></div>
+		</div>
+
+		<!-- TEAM MEMBER 2 -->
+		<div id="m2" class="member">
+			<!-- IMG --> 
+			<div class="profile-img"><img src="images/team/team_member_2.jpg" alt="" /></div>
+			<!-- SCROLL PARAGRAPH -->
+			<div class="scroll-paragraph">
+				<span><strong>Carmen Menéndez</strong> lorem ipsum ad his scripta blandit partiendo, eum fastidii, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per. Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. Eos vocibus deserunt quaestio ei. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit.<br /><br />Tota ludus oratio ea mel, offendit persequeris ei vim. Eos dicat oratio partem ut, id cum ignota senserit intellegat. Sit inani ubique graecis ad, quando graecis liberavisse et cum, dicit option eruditi at duo. Homero salutatus suscipiantur eum id, tamquam voluptaria expetendis ad sed, nobis feugiat similique usu ex. Eum hinc argumentum te, no sit percipit adversarium, ne qui feugiat persecuti. Odio omnes scripserit ad est, ut vidit lorem maiestatis his, putent mandamus gloriatur ne pro. Oratio iriure rationibus ne his, ad est corrumpit splendide. Ad duo appareat moderatius, ei falli tollit denique eos.</span>
+			</div>
+			<!-- EMAIL --> 
+			<div class="email"><a href="mailto:carmen@coolagora.com">carmen@coolagora.com</a></div>
+		</div>
+
+		<!-- TEAM MEMBER 3 -->
+		<div id="m3" class="member">
+			<!-- IMG --> 
+			<div class="profile-img"><img src="images/team/team_member_3.jpg" alt="" /></div>
+			<!-- SCROLL PARAGRAPH -->
+			<div class="scroll-paragraph">
+				<span><strong>Mike Solosky</strong> lorem ipsum ad his scripta blandit partiendo, eum fastidii, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per. Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. Eos vocibus deserunt quaestio ei. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit.<br /><br />Tota ludus oratio ea mel, offendit persequeris ei vim. Eos dicat oratio partem ut, id cum ignota senserit intellegat. Sit inani ubique graecis ad, quando graecis liberavisse et cum, dicit option eruditi at duo. Homero salutatus suscipiantur eum id, tamquam voluptaria expetendis ad sed, nobis feugiat similique usu ex. Eum hinc argumentum te, no sit percipit adversarium, ne qui feugiat persecuti. Odio omnes scripserit ad est, ut vidit lorem maiestatis his, putent mandamus gloriatur ne pro. Oratio iriure rationibus ne his, ad est corrumpit splendide. Ad duo appareat moderatius, ei falli tollit denique eos.</span>
+			</div>
+			<!-- EMAIL --> 
+			<div class="email"><a href="mailto:mike@coolagora.com">mike@coolagora.com</a></div>
+		</div>
+		
+		<!-- TEAM MEMBER 4 -->
+		<div id="m4" class="member">
+			<!-- IMG --> 
+			<div class="profile-img"><img src="images/team/team_member_4.jpg" alt="" /></div>
+			<!-- SCROLL PARAGRAPH -->
+			<div class="scroll-paragraph">
+				<span><strong>Stephane Ouvert</strong> lorem ipsum ad his scripta blandit partiendo, eum fastidii, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per. Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. Eos vocibus deserunt quaestio ei. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam. Ei populo graeci consulatu mei, has ea stet modus phaedrum. Inani oblique ne has, duo et veritus detraxit.<br /><br />Tota ludus oratio ea mel, offendit persequeris ei vim. Eos dicat oratio partem ut, id cum ignota senserit intellegat. Sit inani ubique graecis ad, quando graecis liberavisse et cum, dicit option eruditi at duo. Homero salutatus suscipiantur eum id, tamquam voluptaria expetendis ad sed, nobis feugiat similique usu ex. Eum hinc argumentum te, no sit percipit adversarium, ne qui feugiat persecuti. Odio omnes scripserit ad est, ut vidit lorem maiestatis his, putent mandamus gloriatur ne pro. Oratio iriure rationibus ne his, ad est corrumpit splendide. Ad duo appareat moderatius, ei falli tollit denique eos.</span>
+			</div>
+			<!-- EMAIL --> 
+			<div class="email"><a href="mailto:stephane@coolagora.com">stephane@coolagora.com</a></div>
+		</div>
+
+	</div>
+	
+
+
+	<!-- MENU -->
+	<div id="menu">
+
+			<ul id="sample-menu-3" class="sf-menu sf-vertical">
+
+				<li>
+					<a href="#a">About Us</a>
+					<ul class="second_level">
+						<li><a href="about_company.html">Company</a></li>
+						<li><a href="about_team.html" class="disabled">Our Team</a></li>
+						<li><a href="about_reel.html">Video Reel</a></li>
+						<li><a href="about_events.html">Events Slider</a></li>
+
+						<li>
+							<a href="#">Sample of</a>
+							<ul class="third_level">
+								<li><a href="#">Third</a></li>
+								<li><a href="#">level</a></li>
+								<li><a href="#">menu</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="#">Collections</a>
+					<ul class="second_level">
+						<li><a href="grid_gallery.html">Grid Gallery</a></li>
+						<li><a href="horizontal_gallery.html">Horizontal Gallery</a></li>
+						<li><a href="fullscreen_gallery.html">Fullscreen Gallery</a></li>
+						<li><a href="video_gallery.html">Html5 Video Gallery</a></li>
+					</ul>
+				</li>
+
+				<li><a href="news.html">News</a></li>
+				<li><a href="offices.html">Offices</a></li>
+				<li><a href="location.html">Location</a></li>
+				<li><a href="blog.html">Blog</a></li>
+			</ul>
+	</div>
+	
+
+
+	<!-- FOOTER - COPYRIGHT & SOCIAL NETWORKS -->
+	<div id="footer">
+		<ul>
+			<li class="copyright">Copyright © 2013 - <a href="mailto:info@coolagora.com">info@coolagora.com</a></li>
+			<li><a href="http://www.facebook.com/pezflash" target="_blank" title="Facebook"><img src="images/icon_facebook.png" alt="facebook"/></a></li>
+			<li><a href="http://www.twitter.com/pezflash" target="_blank" title="Twitter"><img src="images//icon_twitter.png" alt="twitter"/></a></li>
+			<li><a href="http://themeforest.net/user/pezflash" target="_blank" title="RSS"><img src="images//icon_rss.png" alt="rss"/></a></li>
+		</ul>
+	</div>
+
+
+</body>
+</html>

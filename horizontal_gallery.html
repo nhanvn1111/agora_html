@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> 
+<!--[if IE 9 ]>    <html lang="en" class="ie"> <![endif]--> 
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>Agora - Html/jQuery template by pezflash</title>
+	<meta name="description" content="Html - jQuery template by pezflash"/>
+	<meta name="keywords" content=""/>
+	<meta name="robots" content="index, follow"/>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic" />
+	<link rel="stylesheet" type="text/css" href="js/tipsy/tipsy.css" />
+	<link rel="stylesheet" type="text/css" href="js/prettyPhoto/css/prettyPhoto.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="js/superfish/superfish.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	
+	<!-- GLOBAL SCRIPTS -->
+	<script type="text/javascript" src="js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery-migrate-1.2.1.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/tipsy/jquery.tipsy.js"></script>
+	<script type="text/javascript" src="js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="js/superfish/hoverIntent.js"></script>
+	<script type="text/javascript" src="js/superfish/superfish.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="js/carouFredSel/jquery.carouFredSel-5.6.1.js"></script>
+	<script type="text/javascript" src="js/mdetect/mdetect.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+
+	<!-- CUSTOM SCRIPTS FOR THIS PAGE -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			//GALLERY SCRIPT
+			$('#horiz-gallery .gallery .images > div').carouFredSel({
+					width: '100%',
+					height: 350,
+					align: false,
+					auto: false,
+					prev: '#horiz-gallery .gallery .navi .prev',
+					next: '#horiz-gallery .gallery .navi .next',
+					scroll: {
+						easing: "easeOutQuart",
+						mousewheel: true,
+						duration: 600
+					},
+					items: {
+						visible: 1,
+						width: 'variable',
+						height: 350
+					}
+			});
+
+			//FADE IN DELAY ANIMATION
+			$('#horiz-gallery .preload').delay(2500).animate({ opacity:0 }, 500, 'easeOutQuad');
+			$('#horiz-gallery .gallery').delay(3000).animate({ opacity:1 }, 1000, 'easeOutQuad');
+			$('#horiz-gallery .gallery .navi').delay(3400).animate({ opacity:1, left:321 }, 600, 'easeOutQuart');
+
+		});
+	</script>
+
+</head>
+
+
+<body>
+
+	<!-- GLOBAL BORDER -->
+	<div id="left"></div>
+	<div id="right"></div>
+	<div id="top"></div>
+	<div id="bottom"></div>
+
+
+
+	<!-- FULLSCREEN BACKGROUND -->
+	<div id="backg">
+		<img src="images/horizontal_gallery/background.jpg" class="bg">
+	</div>
+
+
+		
+	<!-- HEADER --> 
+	<div id="header">
+		<a href="index.html"><img src="images/logo.png" alt="" title="Back to home" /></a>
+	</div>
+
+
+	
+	<!-- HORIZONTAL GALLERY --> 
+	<div id="horiz-gallery">
+
+		<!-- BASE BAND -->
+		<div class="base"></div>
+
+		<!-- TITLE & SUBTITLE --> 
+		<span class="title">Portfolio</span>
+		<span class="subtitle">Horizontal Gallery</span>
+
+		<!-- PRELOAD -->
+		<div class="preload">
+			<img src="images/preload2.gif" alt="" />
+		</div>
+
+		<!-- INTRO TEXT -->
+		<span class="text">Lorem ipsum ad his scripta blandit partiendo, eum fastidii, quo dicit ridens inciderint id. Eirmod signiferumque. In usu latine equidem dolores.</span>
+
+		<!-- GALLERY --> 
+		<div class="gallery">
+
+				<div class="images">
+					<div>
+						<a href="images/horizontal_gallery/img_01.jpg" data-rel="prettyPhoto[gallery]" title="Image sample title"><img src="images/horizontal_gallery/img_01.jpg" alt="" width="321" height="350" /></a>
+						<iframe id="player1" src="http://player.vimeo.com/video/7240892?title=0&amp;byline=0&amp;portrait=0&amp;color=f05a11&amp;api=1&amp;player_id=player1" width="623" height="350"></iframe>
+						<img src="images/horizontal_gallery/img_02.jpg" alt="" width="431" height="350" />				
+						<img src="images/horizontal_gallery/img_03.jpg" alt="" width="500" height="350" />
+						<img src="images/horizontal_gallery/img_04.jpg" alt="" width="500" height="350" />
+					</div>
+				</div>
+
+				<div class="navi">
+					<img src="images/horizontal_gallery/prev_bt.png" alt="" class="prev" />
+					<img src="images/horizontal_gallery/next_bt.png" alt="" class="next" />
+				</div>
+		</div>
+
+	</div>
+
+		
+
+	<!-- MENU -->
+	<div id="menu">
+
+			<ul id="sample-menu-3" class="sf-menu sf-vertical">
+
+				<li>
+					<a href="#a">About Us</a>
+					<ul class="second_level">
+						<li><a href="about_company.html">Company</a></li>
+						<li><a href="about_team.html">Our Team</a></li>
+						<li><a href="about_reel.html">Video Reel</a></li>
+						<li><a href="about_events.html">Events Slider</a></li>
+
+						<li>
+							<a href="#">Sample of</a>
+							<ul class="third_level">
+								<li><a href="#">Third</a></li>
+								<li><a href="#">level</a></li>
+								<li><a href="#">menu</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="#">Collections</a>
+					<ul class="second_level">
+						<li><a href="grid_gallery.html">Grid Gallery</a></li>
+						<li><a href="horizontal_gallery.html" class="disabled">Horizontal Gallery</a></li>
+						<li><a href="fullscreen_gallery.html">Fullscreen Gallery</a></li>
+						<li><a href="video_gallery.html">Html5 Video Gallery</a></li>
+					</ul>
+				</li>
+
+				<li><a href="news.html">News</a></li>
+				<li><a href="offices.html">Offices</a></li>
+				<li><a href="location.html">Location</a></li>
+				<li><a href="blog.html">Blog</a></li>
+			</ul>
+	</div>
+	
+
+
+	<!-- FOOTER - COPYRIGHT & SOCIAL NETWORKS -->
+	<div id="footer">
+		<ul>
+			<li class="copyright">Copyright © 2013 - <a href="mailto:info@coolagora.com">info@coolagora.com</a></li>
+			<li><a href="http://www.facebook.com/pezflash" target="_blank" title="Facebook"><img src="images/icon_facebook.png" alt="facebook"/></a></li>
+			<li><a href="http://www.twitter.com/pezflash" target="_blank" title="Twitter"><img src="images//icon_twitter.png" alt="twitter"/></a></li>
+			<li><a href="http://themeforest.net/user/pezflash" target="_blank" title="RSS"><img src="images//icon_rss.png" alt="rss"/></a></li>
+		</ul>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> 
+<!--[if IE 9 ]>    <html lang="en" class="ie"> <![endif]--> 
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Agora - Html/jQuery template by pezflash</title>
+	<meta name="description" content="Html - jQuery template by pezflash"/>
+	<meta name="keywords" content=""/>
+	<meta name="robots" content="index, follow"/>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic" />
+	<link rel="stylesheet" type="text/css" href="js/tipsy/tipsy.css" />
+	<link rel="stylesheet" type="text/css" href="js/prettyPhoto/css/prettyPhoto.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="js/superfish/superfish.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+	
+	<!-- GLOBAL SCRIPTS -->
+	<script type="text/javascript" src="js/jquery/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery-migrate-1.2.1.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="js/tipsy/jquery.tipsy.js"></script>
+	<script type="text/javascript" src="js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="js/superfish/hoverIntent.js"></script>
+	<script type="text/javascript" src="js/superfish/superfish.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="js/carouFredSel/jquery.carouFredSel-5.6.1.js"></script>
+	<script type="text/javascript" src="js/mdetect/mdetect.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+
+	<!-- CUSTOM SCRIPTS FOR THIS PAGE -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			//BLOG FUNCTIONALITY
+			var c = $('#blog .ticker .carousel');
+			var b = $("#blog .ticker .carousel .item .box");
+			var back = $('#blog .ticker .navi .back');
+			var current;
+
+			c.carouFredSel({
+				width: 820,
+				height: 290,
+				align: "top",
+				direction: "up",
+				circular: false,
+			    infinite: false,
+				items: {
+					visible: 5,
+					width: 800,
+					height: 50
+				},
+				scroll: {
+					mousewheel: true,
+					items: 2,
+					easing: "quadratic",
+					duration: 500
+				},
+				auto: false,
+				prev: {
+					button: '#blog .ticker .navi .prev',
+					key: "left"
+				},
+				next: {
+					button: '#blog .ticker .navi .next',
+					key: "right"
+				}
+			});
+
+			//OPEN ENTRY FUNCTION
+			var openEntry = function(e) {
+				current = $(e.currentTarget).parent();
+				var position = current.position();
+				c.animate({ left: -840 }, 600, 'easeOutQuart');
+				c.delay(600).animate({ top: -position.top }, 600, 'easeOutQuart');
+
+				current.delay(600).animate({ height: 0 }, 0, 'easeOutQuart');
+				current.animate({ width: 2000 }, 600, 'easeOutQuart');				
+				current.animate({ height: 290 }, 1000, 'easeOutQuart');	
+
+				b.css('cursor','default').unbind("click");
+
+				//FADE OUT NAVIGATION AND FADE IN BACK BUTTON
+				$('#blog .ticker .navi .prev').fadeOut('slow');
+				$('#blog .ticker .navi .next').fadeOut('slow');
+				back.delay(700).fadeIn('slow');
+
+				//DEACTIVATE CAROUSEL
+				c.trigger("stop", true);
+			};
+
+			b.click(openEntry);
+
+			//BACK TO LIST BUTTON
+			back.click(function(e) {
+				current.animate({ width: 820 }, 700, 'easeOutQuart');				
+				current.delay(700).animate({ height: 50 }, 0, 'easeOutQuart');
+
+				c.delay(700).animate({ opacity: 0, top: 0, left: 0 }, 0, 'easeOutQuart');
+				c.delay(1000).animate({ opacity: 1 }, 500, 'linear');
+
+				//FADE OUT NAVIGATION AND FADE IN BACK BUTTON
+				$('#blog .ticker .navi .prev').delay(1000).fadeIn('slow');
+				$('#blog .ticker .navi .next').delay(1000).fadeIn('slow');
+				$('#blog .ticker .navi .back').fadeOut('slow');
+
+				//RE-APPLY EACH ENTRY BUTTON ACTION
+				b.css('cursor','pointer').click(openEntry);
+
+				//RE-ACTIVATE CAROUSEL
+				c.trigger("play", true);
+				c.trigger("pause", true);
+			});
+
+			//TOOLTIPS
+			$('#blog .ticker .navi .back').tipsy({ gravity: 'n', fade: true, offset: 8 });
+
+		});
+	</script>
+
+	
+
+
+</head>
+
+
+<body>
+
+	<!-- GLOBAL BORDER -->
+	<div id="left"></div>
+	<div id="right"></div>
+	<div id="top"></div>
+	<div id="bottom"></div>
+
+
+
+	<!-- FULLSCREEN BACKGROUND -->
+	<div id="backg">
+		<img src="images/blog/background.jpg" class="bg">
+	</div>
+
+
+		
+	<!-- HEADER --> 
+	<div id="header">
+		<a href="index.html"><img src="images/logo.png" alt="" title="Back to home" /></a>
+	</div>
+
+
+	
+	<!-- SHOPS --> 
+	<div id="blog">
+
+		<!-- BASE BAND 
+		<div class="base"></div>--> 
+
+		<!-- TITLE & SUBTITLE --> 
+		<span class="title">Our Blog</span>
+		<span class="subtitle">cool stuff...</span>
+
+		<!-- DIVIDER --> 
+		<div class="divider"></div>
+
+		<!-- TICKER --> 
+		<div class="ticker">
+
+			<div class="navi">
+				<img src="images/blog/back_bt.png" alt="" class="back" title="Back" />
+				<img src="images/blog/up_bt.png" alt="" class="prev" />
+				<img src="images/blog/down_bt.png" alt="" class="next" />			
+			</div>
+
+			<div class="carousel">
+
+				<div class="item" id="0">
+					<div class="box">
+						<div class="entry-title">Author Interview: AlumoAudio</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Adrian Try posted in Category</div>
+						<div class="content">
+							<img src="images/blog/img_01.jpg" border="0" />
+							<h3>Author Interview: AlumoAudio</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco sed do eiusmod tempor incididunt ut labore et quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="1">
+					<div class="box">
+					<div class="entry-title">Featured Desktop: Matthew Pearce</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Adrian Try posted in Community</div>
+						<div class="content">
+								<img src="images/blog/img_01.jpg" border="0" />
+								<h3>Featured Desktop: Matthew Pearce</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="2">
+					<div class="box">
+						<div class="entry-title">Announcing Mactuts+ — Mac & OS X Tutorials, Guides & How To’s!</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by David Appleyard posted in News</div>
+						<div class="content">
+							<img src="images/blog/img_02.jpg" border="0" />
+							<h3>Announcing Mactuts+ — Mac & OS X Tutorials, Guides & How To’s!</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="3">
+					<div class="box">
+						<div class="entry-title">How to Stay Healthy While Working on a Laptop</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Adrian Try posted in General</div>
+						<div class="content">
+							<img src="images/blog/img_03.jpg" border="0" />
+							<h3>How to Stay Healthy While Working on a Laptop</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="4">
+					<div class="box">
+						<div class="entry-title">How to prevent Hacking attacks</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Adrian Try posted in General</div>
+						<div class="content">
+							<img src="images/blog/img_01.jpg" border="0" />
+							<h3>How to prevent Hacking attacks</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="5">
+					<div class="box">
+						<div class="entry-title">Community Superstar Winner – Tsafi</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Travis King posted in Community</div>
+						<div class="content">
+							<img src="images/blog/img_02.jpg" border="0" />
+							<h3>Community Superstar Winner – Tsafi</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="6">
+					<div class="box">
+						<div class="entry-title">Freebie Friday: Free Marketplace Files for July</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Adrian Try posted in Freebies</div>
+						<div class="content">
+							<img src="images/blog/img_03.jpg" border="0" />
+							<h3>Freebie Friday: Free Marketplace Files for July</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="7">
+					<div class="box">
+						<div class="entry-title">More Great Tools from Envato Extras</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Travis King posted in News</div>
+						<div class="content">
+							<img src="images/blog/img_01.jpg" border="0" />
+							<h3>More Great Tools from Envato Extras</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="8">
+					<div class="box">
+						<div class="entry-title">Featured Desktop: Matthew Pearce</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Adrian Try posted in Community</div>
+						<div class="content">
+							<img src="images/blog/img_02.jpg" border="0" />
+							<h3>Featured Desktop: Matthew Pearce</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="9">
+					<div class="box">
+						<div class="entry-title">Announcing Mactuts+ — Mac & OS X Tutorials, Guides & How To’s!</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by David Appleyard posted in News</div>
+						<div class="content">
+							<img src="images/blog/img_03.jpg" border="0" />
+							<h3>Announcing Mactuts+ — Mac & OS X Tutorials, Guides & How To’s!</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="10">
+					<div class="box">
+						<div class="entry-title">How to Stay Healthy While Working on a Laptop</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Adrian Try posted in General</div>
+						<div class="content">
+							<img src="images/blog/img_01.jpg" border="0" />
+							<h3>How to Stay Healthy While Working on a Laptop</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item" id="11">
+					<div class="box">
+						<div class="entry-title">Envato’s Most Wanted Winners – CodeCanyon > WordPress Calendars</div>
+						<div class="date">September 18th, 2012</div>
+						<div class="author">by Josh Sprague posted in Most Wanted</div>
+						<div class="content">
+							<img src="images/blog/img_02.jpg" border="0" />
+							<h3>Envato’s Most Wanted Winners – CodeCanyon > WordPress Calendars</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <strong>dolore magna aliqua.</strong> Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet incididunt ut labore et dolore magna aliqua.<br/><br/>Ut enim ad minim veniam, quis nostrud exercitation ullamco.<br/><br/><a href="#" target="_blank">&raquo; Visit site</a></p>
+						</div>
+					</div>
+				</div>
+
+			</div>	<!-- END CAROUSEL -->
+
+		</div>	<!-- END TICKER -->
+
+	</div>	<!-- END BLOG -->
+
+		
+
+	<!-- MENU -->
+	<div id="menu">
+
+			<ul id="sample-menu-3" class="sf-menu sf-vertical">
+
+				<li>
+					<a href="#a">About Us</a>
+					<ul class="second_level">
+						<li><a href="about_company.html">Company</a></li>
+						<li><a href="about_team.html">Our Team</a></li>
+						<li><a href="about_reel.html">Video Reel</a></li>
+						<li><a href="about_events.html">Events Slider</a></li>
+
+						<li>
+							<a href="#">Sample of</a>
+							<ul class="third_level">
+								<li><a href="#">Third</a></li>
+								<li><a href="#">level</a></li>
+								<li><a href="#">menu</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="#">Collections</a>
+					<ul class="second_level">
+						<li><a href="grid_gallery.html">Grid Gallery</a></li>
+						<li><a href="horizontal_gallery.html">Horizontal Gallery</a></li>
+						<li><a href="fullscreen_gallery.html">Fullscreen Gallery</a></li>
+						<li><a href="video_gallery.html">Html5 Video Gallery</a></li>
+					</ul>
+				</li>
+
+				<li><a href="news.html">News</a></li>
+				<li><a href="offices.html">Offices</a></li>
+				<li><a href="location.html">Location</a></li>
+				<li><a href="blog.html" class="disabled">Blog</a></li>
+			</ul>
+	</div>
+	
+
+
+	<!-- FOOTER - COPYRIGHT & SOCIAL NETWORKS -->
+	<div id="footer">
+		<ul>
+			<li class="copyright">Copyright © 2013 - <a href="mailto:info@coolagora.com">info@coolagora.com</a></li>
+			<li><a href="http://www.facebook.com/pezflash" target="_blank" title="Facebook"><img src="images/icon_facebook.png" alt="facebook"/></a></li>
+			<li><a href="http://www.twitter.com/pezflash" target="_blank" title="Twitter"><img src="images//icon_twitter.png" alt="twitter"/></a></li>
+			<li><a href="http://themeforest.net/user/pezflash" target="_blank" title="RSS"><img src="images//icon_rss.png" alt="rss"/></a></li>
+		</ul>
+	</div>
+
+
+</body>
+</html>
